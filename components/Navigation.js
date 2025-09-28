@@ -54,18 +54,20 @@ export default function Navigation() {
           ))}
         </div>
 
-        <motion.button
+        <motion.a
+          href="https://calendly.com/devincicodes-official/salesaura"
+          target="_blank"
+          rel="noopener noreferrer"
           className="cta-nav"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6 }}
-          onClick={() => scrollToSection('contact')}
         >
-          Get Started
+          Book a slot
           <ArrowUpRight size={16} />
-        </motion.button>
+        </motion.a>
 
         <button
           className="mobile-menu-toggle"
@@ -100,9 +102,11 @@ export default function Navigation() {
               {item}
             </motion.button>
           ))}
-          <motion.button
+          <motion.a
+            href="https://calendly.com/devincicodes-official/salesaura"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mobile-cta"
-            onClick={() => scrollToSection('contact')}
             initial={{ opacity: 0, x: -20 }}
             animate={{
               opacity: isMobileMenuOpen ? 1 : 0,
@@ -110,9 +114,9 @@ export default function Navigation() {
             }}
             transition={{ delay: 0.4 }}
           >
-            Get Started
+            Book a slot
             <ArrowUpRight size={16} />
-          </motion.button>
+          </motion.a>
         </div>
       </motion.div>
     </motion.nav>

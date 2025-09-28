@@ -45,7 +45,7 @@ export default function BottomScrollAnimation() {
           left: 0;
           right: 0;
           width: 100vw;
-          height: 100px;
+          height: 60px;
           background: linear-gradient(180deg,
             rgba(0, 0, 0, 0) 0%,
             rgba(0, 0, 0, 0.3) 20%,
@@ -94,7 +94,7 @@ export default function BottomScrollAnimation() {
         .scroll-track {
           position: relative;
           width: 100%;
-          height: 60px;
+          height: 40px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -128,25 +128,25 @@ export default function BottomScrollAnimation() {
 
         .scroll-keyword {
           display: inline-block;
-          padding: 10px 28px;
-          margin-right: 50px;
-          font-weight: 600;
+          padding: 6px 16px;
+          margin-right: 30px;
+          font-weight: 500;
           color: rgba(255, 255, 255, 0.85);
           background: linear-gradient(135deg,
             rgba(139, 92, 246, 0.1) 0%,
             rgba(59, 130, 246, 0.05) 100%
           );
           border: 1px solid rgba(139, 92, 246, 0.2);
-          border-radius: 30px;
+          border-radius: 20px;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-          letter-spacing: 0.03em;
+          letter-spacing: 0.02em;
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           overflow: hidden;
           text-transform: uppercase;
-          font-size: 0.85rem;
+          font-size: 0.7rem;
           pointer-events: auto;
           cursor: pointer;
         }
@@ -220,17 +220,17 @@ export default function BottomScrollAnimation() {
 
         @media (max-width: 768px) {
           .bottom-scroll-container {
-            height: 85px;
-          }
-
-          .scroll-track {
             height: 50px;
           }
 
+          .scroll-track {
+            height: 35px;
+          }
+
           .scroll-keyword {
-            padding: 8px 22px;
-            margin-right: 35px;
-            font-size: 0.8rem;
+            padding: 5px 14px;
+            margin-right: 20px;
+            font-size: 0.65rem;
           }
 
           .scroll-content {
@@ -240,18 +240,18 @@ export default function BottomScrollAnimation() {
 
         @media (max-width: 480px) {
           .bottom-scroll-container {
-            height: 75px;
-          }
-
-          .scroll-track {
             height: 45px;
           }
 
+          .scroll-track {
+            height: 30px;
+          }
+
           .scroll-keyword {
-            padding: 7px 18px;
-            margin-right: 25px;
-            font-size: 0.75rem;
-            letter-spacing: 0.02em;
+            padding: 4px 12px;
+            margin-right: 15px;
+            font-size: 0.6rem;
+            letter-spacing: 0.01em;
           }
 
           .scroll-content {

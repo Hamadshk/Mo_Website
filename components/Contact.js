@@ -100,7 +100,7 @@ export default function Contact() {
         >
           <div className="section-badge">
             <Sparkles size={16} />
-            <span>Get Started Today</span>
+            <span>Book a slot Today</span>
           </div>
           <h2 className="section-title">
             Ready to <span className="gradient-text">Transform</span>
@@ -126,25 +126,37 @@ export default function Contact() {
             </p>
 
             <div className="contact-methods">
-              {contactMethods.map((method, index) => (
-                <motion.div
-                  key={index}
-                  className={`contact-method glass method-${method.color}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  whileHover={{ y: -2, scale: 1.02 }}
-                >
-                  <div className="method-icon">
-                    <method.icon size={20} />
-                  </div>
-                  <div className="method-content">
-                    <div className="method-label">{method.label}</div>
-                    <div className="method-value">{method.value}</div>
-                    <div className="method-description">{method.description}</div>
-                  </div>
-                </motion.div>
-              ))}
+              {contactMethods.map((method, index) => {
+                const isScheduleMethod = method.label === 'Schedule';
+                const Component = isScheduleMethod ? motion.a : motion.div;
+                const extraProps = isScheduleMethod ? {
+                  href: "https://calendly.com/devincicodes-official/salesaura",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  style: { cursor: 'pointer' }
+                } : {};
+
+                return (
+                  <Component
+                    key={index}
+                    className={`contact-method glass method-${method.color}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ delay: 0.4 + index * 0.1 }}
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    {...extraProps}
+                  >
+                    <div className="method-icon">
+                      <method.icon size={20} />
+                    </div>
+                    <div className="method-content">
+                      <div className="method-label">{method.label}</div>
+                      <div className="method-value">{method.value}</div>
+                      <div className="method-description">{method.description}</div>
+                    </div>
+                  </Component>
+                );
+              })}
             </div>
 
             <div className="benefits-section">
@@ -383,14 +395,17 @@ export default function Contact() {
               Already transforming their business with our AI solutions
             </p>
             <div className="cta-buttons">
-              <motion.button
+              <motion.a
+                href="https://calendly.com/devincicodes-official/salesaura"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="cta-primary"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Calendar size={18} />
-                <span>Schedule Free Demo</span>
-              </motion.button>
+                <span>Book a slot</span>
+              </motion.a>
               <motion.button
                 className="cta-secondary"
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -402,7 +417,107 @@ export default function Contact() {
             </div>
           </div>
         </motion.div>
+
+        {/* Simple Footer */}
+        <motion.div
+          className="simple-footer"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
+        >
+          <div className="footer-content">
+            <div className="footer-left">
+              <div className="footer-logo">
+                <img
+                  src="/images/Mo_Logo.jpeg"
+                  alt="Mo Logo"
+                  className="footer-logo-img"
+                />
+                <span className="footer-brand">AI Solutions</span>
+              </div>
+              <p className="footer-tagline">Transforming Business with Intelligence</p>
+            </div>
+            <div className="footer-right">
+              <p className="footer-copyright">© 2024 AI Solutions. All rights reserved.</p>
+            </div>
+          </div>
+        </motion.div>
       </div>
+
+      <style jsx>{`
+        .simple-footer {
+          margin-top: 80px;
+          padding: 40px 0 40px;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .footer-left {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .footer-logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .footer-logo-img {
+          width: 32px;
+          height: 32px;
+          border-radius: 6px;
+          object-fit: cover;
+        }
+
+        .footer-brand {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.9);
+          background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .footer-tagline {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.6);
+          margin: 0;
+        }
+
+        .footer-copyright {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.5);
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          .simple-footer {
+            padding: 32px 0 32px;
+          }
+
+          .footer-content {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+            padding: 0 16px;
+          }
+
+          .footer-left {
+            align-items: center;
+          }
+        }
+      `}</style>
     </section>
   )
 }

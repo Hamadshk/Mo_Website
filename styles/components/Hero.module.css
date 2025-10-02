@@ -27,7 +27,7 @@
 .orb1 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(0, 255, 136, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
   top: 10%;
   left: 10%;
 }
@@ -35,7 +35,7 @@
 .orb2 {
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(30, 58, 138, 0.15) 0%, transparent 70%);
   top: 50%;
   right: 20%;
 }
@@ -43,7 +43,7 @@
 .orb3 {
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(255, 0, 102, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(146, 64, 14, 0.15) 0%, transparent 70%);
   bottom: 20%;
   left: 30%;
 }
@@ -152,7 +152,7 @@
   align-items: center;
   gap: calc(var(--space-xs) + 0.25rem);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
 }
 
 .ctaSecondary {
@@ -222,10 +222,18 @@
   .hero {
     padding-top: var(--space-4xl);
     min-height: 90vh;
+    text-align: center;
   }
 
   .container {
-    padding: 0 var(--space-sm);
+    padding: 0 var(--space-md);
+    text-align: center;
+    justify-items: center;
+  }
+
+  .heroContent {
+    max-width: 100%;
+    text-align: center;
   }
 
   .heroVisual {
@@ -235,32 +243,46 @@
 
   .heroStats {
     grid-template-columns: 1fr;
-    gap: var(--space-sm);
+    gap: var(--space-lg);
     text-align: center;
+    justify-items: center;
+    max-width: 400px;
+    margin: 0 auto var(--space-xl) auto;
   }
 
   .heroCta {
     flex-direction: column;
     align-items: stretch;
-    gap: var(--space-sm);
+    gap: var(--space-md);
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .ctaPrimary,
   .ctaSecondary {
     width: 100%;
     justify-content: center;
+    padding: 1rem 2rem;
   }
 }
 
 /* Mobile phones - Enhanced responsiveness */
 @media (max-width: 480px) {
   .hero {
-    padding-top: var(--space-xl);
+    padding-top: var(--space-3xl);
     min-height: 85vh;
+    text-align: center;
   }
 
   .container {
     padding: 0 var(--space-sm);
+    text-align: center;
+    justify-items: center;
+  }
+
+  .heroContent {
+    max-width: 100%;
+    text-align: center;
   }
 
   .heroVisual {
@@ -269,26 +291,54 @@
   }
 
   .heroTitle {
-    font-size: clamp(1.8rem, 6vw, 2.5rem);
-    margin-bottom: var(--space-sm);
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: var(--space-md);
+    text-align: center;
   }
 
   .heroSubtitle {
     font-size: 1rem;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    text-align: center;
+    max-width: 100%;
   }
 
   .heroBadge {
     padding: var(--space-xs) var(--space-sm);
     font-size: 0.8rem;
-    margin-bottom: var(--space-md);
+    margin: 0 auto var(--space-md) auto;
   }
 
   .heroStats {
-    margin-bottom: var(--space-lg);
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    text-align: center;
+    justify-items: center;
+    max-width: 300px;
+    margin: 0 auto var(--space-xl) auto;
   }
 
   .statNumber {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .heroCta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
   }
 }

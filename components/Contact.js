@@ -2,6 +2,7 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { ArrowRight, Mail, Phone, MessageCircle, Calendar, Users, CheckCircle, Sparkles, Send, Globe, Clock, Shield } from 'lucide-react'
+import CalendlyEmbed from './CalendlyEmbed'
 
 export default function Contact() {
   const ref = useRef(null)
@@ -130,7 +131,7 @@ export default function Contact() {
                 const isScheduleMethod = method.label === 'Schedule';
                 const Component = isScheduleMethod ? motion.a : motion.div;
                 const extraProps = isScheduleMethod ? {
-                  href: "https://calendly.com/devincicodes-official/salesaura",
+                  href: "https://calendly.com/agentcorti/30min",
                   target: "_blank",
                   rel: "noopener noreferrer",
                   style: { cursor: 'pointer' }
@@ -396,7 +397,7 @@ export default function Contact() {
             </p>
             <div className="cta-buttons">
               <motion.a
-                href="https://calendly.com/devincicodes-official/salesaura"
+                href="https://calendly.com/agentcorti/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cta-primary"
@@ -417,7 +418,12 @@ export default function Contact() {
             </div>
           </div>
         </motion.div>
+      </div>
 
+      {/* Calendly Embedded Widget */}
+      <CalendlyEmbed />
+
+      <div className="container">
         {/* Simple Footer */}
         <motion.div
           className="simple-footer"
@@ -433,12 +439,12 @@ export default function Contact() {
                   alt="Mo Logo"
                   className="footer-logo-img"
                 />
-                <span className="footer-brand">AI Solutions</span>
+                <span className="footer-brand">Agent Corti</span>
               </div>
               <p className="footer-tagline">Transforming Business with Intelligence</p>
             </div>
             <div className="footer-right">
-              <p className="footer-copyright">© 2024 AI Solutions. All rights reserved.</p>
+              <p className="footer-copyright">© 2024 Agent Corti. All rights reserved.</p>
             </div>
           </div>
         </motion.div>
@@ -482,11 +488,7 @@ export default function Contact() {
         .footer-brand {
           font-size: 1.1rem;
           font-weight: 600;
-          color: rgba(255, 255, 255, 0.9);
-          background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          color: #ffffff;
         }
 
         .footer-tagline {

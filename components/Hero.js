@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from 'react'
 import { ArrowRight, Play, Sparkles } from 'lucide-react'
 import MatrixRain from './MatrixRain'
 import TechAnimation from './TechAnimation'
-import AIBrain from './AIBrain'
+import RevenueLossCalculator from './RevenueLossCalculator'
 
 export default function Hero() {
   const containerRef = useRef(null)
@@ -137,7 +137,7 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual hero-animate-6">
-          <AIBrain />
+          <RevenueLossCalculator />
         </div>
       </div>
 

@@ -29,12 +29,14 @@ export default function Navigation() {
           className="nav-logo"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
         >
           <img
             src="/images/Mo_Logo.jpeg"
             alt="Mo Logo"
             className="logo-image"
           />
+          <span style={{ color: '#ffffff', fontSize: '1.1rem', fontWeight: '600' }}>Agent Corti</span>
         </motion.div>
 
         <div className="nav-menu desktop-menu">
@@ -55,7 +57,7 @@ export default function Navigation() {
         </div>
 
         <motion.a
-          href="https://calendly.com/devincicodes-official/salesaura"
+          href="https://calendly.com/agentcorti/30min"
           target="_blank"
           rel="noopener noreferrer"
           className="cta-nav"
@@ -103,7 +105,7 @@ export default function Navigation() {
             </motion.button>
           ))}
           <motion.a
-            href="https://calendly.com/devincicodes-official/salesaura"
+            href="https://calendly.com/agentcorti/30min"
             target="_blank"
             rel="noopener noreferrer"
             className="mobile-cta"

@@ -72,9 +72,9 @@ export default function BottomScrollAnimation() {
           height: 1px;
           background: linear-gradient(90deg,
             transparent,
-            rgba(139, 92, 246, 0.5) 20%,
-            rgba(59, 130, 246, 0.5) 50%,
-            rgba(139, 92, 246, 0.5) 80%,
+            rgba(212, 175, 55, 0.5) 20%,
+            rgba(30, 58, 138, 0.5) 50%,
+            rgba(212, 175, 55, 0.5) 80%,
             transparent
           );
           animation: shimmer 8s ease-in-out infinite;
@@ -133,10 +133,10 @@ export default function BottomScrollAnimation() {
           font-weight: 500;
           color: rgba(255, 255, 255, 0.85);
           background: linear-gradient(135deg,
-            rgba(139, 92, 246, 0.1) 0%,
-            rgba(59, 130, 246, 0.05) 100%
+            rgba(212, 175, 55, 0.1) 0%,
+            rgba(30, 58, 138, 0.05) 100%
           );
-          border: 1px solid rgba(139, 92, 246, 0.2);
+          border: 1px solid rgba(212, 175, 55, 0.2);
           border-radius: 20px;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           letter-spacing: 0.02em;
@@ -160,7 +160,7 @@ export default function BottomScrollAnimation() {
           height: 100%;
           background: linear-gradient(90deg,
             transparent,
-            rgba(139, 92, 246, 0.2),
+            rgba(212, 175, 55, 0.2),
             transparent
           );
           transition: left 0.6s ease;
@@ -173,14 +173,14 @@ export default function BottomScrollAnimation() {
         .scroll-keyword:hover {
           color: rgba(255, 255, 255, 1);
           background: linear-gradient(135deg,
-            rgba(139, 92, 246, 0.2) 0%,
-            rgba(59, 130, 246, 0.15) 100%
+            rgba(212, 175, 55, 0.2) 0%,
+            rgba(30, 58, 138, 0.15) 100%
           );
-          border-color: rgba(139, 92, 246, 0.4);
+          border-color: rgba(212, 175, 55, 0.4);
           transform: translateY(-3px) scale(1.05);
-          box-shadow: 
-            0 10px 25px -5px rgba(139, 92, 246, 0.25),
-            0 5px 15px -5px rgba(59, 130, 246, 0.2),
+          box-shadow:
+            0 10px 25px -5px rgba(212, 175, 55, 0.25),
+            0 5px 15px -5px rgba(30, 58, 138, 0.2),
             inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
         }
 
@@ -196,10 +196,10 @@ export default function BottomScrollAnimation() {
         /* Glow effect for keywords */
         @keyframes glow {
           0%, 100% {
-            box-shadow: 0 0 5px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
           }
           50% {
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
           }
         }
 
@@ -221,49 +221,129 @@ export default function BottomScrollAnimation() {
         @media (max-width: 768px) {
           .bottom-scroll-container {
             height: 50px;
+            background: linear-gradient(180deg,
+              rgba(0, 0, 0, 0) 0%,
+              rgba(0, 0, 0, 0.4) 20%,
+              rgba(0, 0, 0, 0.8) 50%,
+              rgba(0, 0, 0, 0.95) 100%
+            );
           }
 
           .scroll-track {
             height: 35px;
+            mask: linear-gradient(
+              to right,
+              transparent 0%,
+              black 15%,
+              black 85%,
+              transparent 100%
+            );
+            -webkit-mask: linear-gradient(
+              to right,
+              transparent 0%,
+              black 15%,
+              black 85%,
+              transparent 100%
+            );
           }
 
           .scroll-keyword {
-            padding: 5px 14px;
-            margin-right: 20px;
-            font-size: 0.65rem;
+            padding: 4px 12px;
+            margin-right: 16px;
+            font-size: 0.6rem;
+            border-radius: 16px;
+            letter-spacing: 0.01em;
           }
 
           .scroll-content {
             animation-duration: 35s;
           }
+
+          .scroll-keyword:hover {
+            transform: translateY(-2px) scale(1.03);
+          }
         }
 
         @media (max-width: 480px) {
           .bottom-scroll-container {
-            height: 45px;
+            height: 40px;
+            background: linear-gradient(180deg,
+              rgba(0, 0, 0, 0) 0%,
+              rgba(0, 0, 0, 0.5) 20%,
+              rgba(0, 0, 0, 0.85) 50%,
+              rgba(0, 0, 0, 0.98) 100%
+            );
           }
 
           .scroll-track {
-            height: 30px;
+            height: 28px;
+            mask: linear-gradient(
+              to right,
+              transparent 0%,
+              black 20%,
+              black 80%,
+              transparent 100%
+            );
+            -webkit-mask: linear-gradient(
+              to right,
+              transparent 0%,
+              black 20%,
+              black 80%,
+              transparent 100%
+            );
           }
 
           .scroll-keyword {
-            padding: 4px 12px;
-            margin-right: 15px;
-            font-size: 0.6rem;
-            letter-spacing: 0.01em;
+            padding: 3px 10px;
+            margin-right: 12px;
+            font-size: 0.55rem;
+            letter-spacing: 0.005em;
+            border-radius: 14px;
+            min-width: fit-content;
+            white-space: nowrap;
           }
 
           .scroll-content {
-            animation-duration: 30s;
+            animation-duration: 28s;
+          }
+
+          .scroll-keyword:hover {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow:
+              0 8px 20px -5px rgba(139, 92, 246, 0.2),
+              0 4px 12px -3px rgba(59, 130, 246, 0.15);
           }
         }
 
-        /* Smooth scrolling on Safari */
+        /* Better mobile performance and compatibility */
         @supports (-webkit-touch-callout: none) {
           .scroll-content {
             -webkit-transform: translateZ(0);
             -webkit-animation: scrollLeftToRight 45s linear infinite;
+          }
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+          .scroll-content {
+            animation-duration: 120s;
+          }
+          .scroll-keyword {
+            animation: none;
+          }
+          .bottom-scroll-container::before {
+            animation: none;
+          }
+        }
+
+        /* Enhanced touch device support */
+        @media (hover: none) and (pointer: coarse) {
+          .scroll-keyword:hover {
+            transform: none;
+            background: linear-gradient(135deg,
+              rgba(139, 92, 246, 0.15) 0%,
+              rgba(59, 130, 246, 0.1) 100%
+            );
           }
         }
       `}</style>

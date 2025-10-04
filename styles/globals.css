@@ -378,6 +378,7 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
@@ -394,6 +395,7 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
@@ -958,10 +960,11 @@ body {
 
   .hero-cta {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: var(--space-md);
     max-width: 400px;
     margin: 0 auto;
+    width: 100%;
   }
 
   .cta-primary,
@@ -969,6 +972,7 @@ body {
     width: 100%;
     justify-content: center;
     padding: 1rem 2rem;
+    text-align: center;
   }
 
   .desktop-menu,
@@ -1939,18 +1943,22 @@ body {
 
   .hero-cta {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: var(--space-sm);
     max-width: 100%;
     margin: 0 auto;
+    width: 100%;
+    padding: 0 var(--space-sm);
   }
 
   .cta-primary,
   .cta-secondary {
     width: 100%;
+    max-width: 100%;
     justify-content: center;
     padding: 0.875rem 1.25rem;
     font-size: 0.9rem;
+    text-align: center;
   }
 
   .calculator-section {

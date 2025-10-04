@@ -285,8 +285,14 @@ export default function TechAnimation() {
         }
 
         @media (max-width: 768px) {
+          .tech-animation-container {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+          }
+
           .tech-animation-display {
-            width: 400px;
+            width: 90vw;
+            max-width: 500px;
             height: 60px;
           }
 
@@ -310,19 +316,21 @@ export default function TechAnimation() {
           }
 
           .fade-overlay {
-            width: 60px;
+            width: 50px;
           }
         }
 
         @media (max-width: 480px) {
           .tech-animation-display {
-            width: 320px;
+            width: 92vw;
+            max-width: 380px;
             height: 55px;
           }
 
           .tech-item {
             padding: 6px 12px;
             gap: 8px;
+            white-space: nowrap;
           }
 
           .tech-logo-wrapper {
@@ -336,11 +344,11 @@ export default function TechAnimation() {
           }
 
           .tech-name {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
           }
 
           .fade-overlay {
-            width: 50px;
+            width: 40px;
           }
         }
       `}</style>

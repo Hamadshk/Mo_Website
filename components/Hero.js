@@ -136,15 +136,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <motion.div
-        className="hero-badge-bottom"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-      >
-        <Sparkles size={14} />
-        <span>Trusted by 500+ Businesses Worldwide</span>
-      </motion.div>
     </section>
   )
 }

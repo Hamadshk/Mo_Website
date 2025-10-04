@@ -570,31 +570,6 @@ body {
   animation: slideInScale 1s ease-out 1.2s both;
 }
 
-.hero-badge-bottom {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  background: var(--bg-card);
-  border: 1px solid var(--border-accent);
-  padding: var(--space-sm) var(--space-lg);
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  white-space: nowrap;
-}
-
-.hero-badge-bottom svg {
-  color: var(--accent-primary);
-  flex-shrink: 0;
-}
-
 /* Calculator Section */
 .calculator-section {
   padding: var(--space-4xl) 0;
@@ -1046,17 +1021,6 @@ body {
 
   .logo-image {
     height: 35px;
-  }
-
-  .hero-badge-bottom {
-    font-size: 0.8rem;
-    padding: var(--space-xs) var(--space-md);
-    bottom: 1.5rem;
-  }
-
-  .hero-badge-bottom svg {
-    width: 12px;
-    height: 12px;
   }
 
   .calculator-section {
@@ -2052,23 +2016,6 @@ body {
 
   .logo-image {
     height: 30px;
-  }
-
-  .hero-badge-bottom {
-    font-size: 0.7rem;
-    padding: 0.4rem 0.75rem;
-    bottom: 1rem;
-    max-width: 90%;
-  }
-
-  .hero-badge-bottom svg {
-    width: 11px;
-    height: 11px;
-  }
-
-  .hero-badge-bottom span {
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   /* Typography adjustments for mobile */

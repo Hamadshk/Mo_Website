@@ -583,7 +583,6 @@ body {
   color: var(--text-tertiary);
   font-size: 0.9rem;
   text-align: center;
-  width: 100%;
 }
 
 .scroll-line {

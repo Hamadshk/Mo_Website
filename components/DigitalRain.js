@@ -80,14 +80,14 @@ export default function DigitalRain() {
           alpha = drop.opacity * (1 - fadeProgress)
         }
 
-        // Use subtle green/cyan colors
+        // Use bright gold colors
         const colorVariant = Math.random()
         if (colorVariant < 0.6) {
-          ctx.fillStyle = `rgba(0, 255, 65, ${alpha})` // Matrix green
+          ctx.fillStyle = `rgba(255, 215, 0, ${alpha})` // Bright gold
         } else if (colorVariant < 0.9) {
-          ctx.fillStyle = `rgba(0, 255, 255, ${alpha})` // Cyan
+          ctx.fillStyle = `rgba(255, 193, 7, ${alpha})` // Amber gold
         } else {
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.5})` // Occasional white
+          ctx.fillStyle = `rgba(255, 235, 59, ${alpha * 0.5})` // Lighter gold
         }
 
         // Draw the character

@@ -54,8 +54,8 @@ const MatrixRain = () => {
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Single neon green color
-      ctx.fillStyle = 'rgba(0, 255, 136, 0.15)'; // Very subtle neon green
+      // Single bright gold color
+      ctx.fillStyle = 'rgba(255, 215, 0, 0.15)'; // Very subtle bright gold
       ctx.font = `${fontSize}px 'Courier New', monospace`;
 
       dropsRef.current.forEach((drop) => {

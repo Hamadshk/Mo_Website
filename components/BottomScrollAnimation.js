@@ -3,21 +3,16 @@ import { useEffect, useRef } from 'react'
 
 export default function BottomScrollAnimation() {
   const keywords = [
-    "DeepMind",
     "OpenAI",
     "Anthropic",
     "Machine Learning",
-    "Neural Networks",
-    "AI Innovation",
     "Deep Learning",
     "Artificial Intelligence",
-    "GPT Models",
-    "Computer Vision",
-    "Natural Language",
-    "Robotics AI",
-    "Quantum Computing",
-    "Edge AI",
-    "AutoML",
+    "N8N",
+    "VAPI",
+    "Zapier",
+    "Make",
+    "GHL",
     "Generative AI"
   ]
 

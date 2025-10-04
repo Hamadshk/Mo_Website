@@ -6,10 +6,26 @@ import { TrendingDown, DollarSign, Phone } from 'lucide-react'
 export default function RevenueLossCalculator() {
   const [missedCalls, setMissedCalls] = useState(10)
   const [avgClientValue, setAvgClientValue] = useState(500)
+  const [inputValue, setInputValue] = useState('500')
 
   const dailyLoss = missedCalls * avgClientValue
   const monthlyLoss = dailyLoss * 30
   const yearlyLoss = dailyLoss * 365
+
+  const handleInputChange = (e) => {
+    const value = e.target.value
+
+    // Allow only numbers and decimal point
+    if (value === '' || /^\d*\.?\d*$/.test(value)) {
+      setInputValue(value)
+
+      // Parse the value, if empty set to 0
+      const numValue = value === '' ? 0 : parseFloat(value)
+      if (!isNaN(numValue)) {
+        setAvgClientValue(numValue)
+      }
+    }
+  }
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
@@ -66,9 +82,19 @@ export default function RevenueLossCalculator() {
           <div className="input-wrapper">
             <DollarSign className="input-icon" size={20} />
             <input
-              type="number"
-              value={avgClientValue}
-              onChange={(e) => setAvgClientValue(parseFloat(e.target.value) || 0)}
+              type="text"
+              inputMode="numeric"
+              value={inputValue}
+              onChange={handleInputChange}
+              onBlur={(e) => {
+                // Format the input on blur
+                if (e.target.value === '' || parseFloat(e.target.value) === 0) {
+                  setInputValue('0')
+                  setAvgClientValue(0)
+                } else {
+                  setInputValue(avgClientValue.toString())
+                }
+              }}
               className="text-input"
               placeholder="500"
             />
@@ -153,16 +179,17 @@ export default function RevenueLossCalculator() {
         }
 
         .calculator-card {
-          background: linear-gradient(145deg, rgba(30, 58, 138, 0.1) 0%, rgba(15, 23, 42, 0.8) 100%);
-          border: 1px solid rgba(212, 175, 55, 0.2);
+          background: rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 215, 0, 0.4);
           border-radius: 24px;
           padding: 32px;
           max-width: 480px;
           width: 100%;
           box-shadow:
-            0 20px 60px rgba(0, 0, 0, 0.3),
-            0 0 40px rgba(212, 175, 55, 0.1);
-          backdrop-filter: blur(20px);
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            0 0 20px rgba(255, 215, 0, 0.2);
+          backdrop-filter: blur(15px) saturate(180%);
+          -webkit-backdrop-filter: blur(15px) saturate(180%);
         }
 
         .calculator-header {
@@ -176,11 +203,13 @@ export default function RevenueLossCalculator() {
           justify-content: center;
           width: 64px;
           height: 64px;
-          background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(30, 58, 138, 0.2));
-          border: 1px solid rgba(212, 175, 55, 0.3);
+          background: rgba(255, 215, 0, 0.15);
+          border: 1px solid rgba(255, 215, 0, 0.5);
           border-radius: 16px;
-          color: #D4AF37;
+          color: #FFD700;
           margin: 0 auto 16px;
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
         }
 
         .calculator-title {
@@ -204,7 +233,7 @@ export default function RevenueLossCalculator() {
         }
 
         .value-display {
-          color: #D4AF37;
+          color: #FFD700;
           font-weight: 700;
           font-size: 18px;
           margin-left: 8px;
@@ -230,33 +259,33 @@ export default function RevenueLossCalculator() {
           appearance: none;
           width: 24px;
           height: 24px;
-          background: linear-gradient(135deg, #D4AF37, #1e3a8a);
+          background: linear-gradient(135deg, #FFD700, #1e3a8a);
           border: 2px solid rgba(255, 255, 255, 0.3);
           border-radius: 50%;
           cursor: pointer;
-          box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+          box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
           transition: all 0.2s ease;
         }
 
         .slider::-webkit-slider-thumb:hover {
           transform: scale(1.1);
-          box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6);
+          box-shadow: 0 4px 12px rgba(255, 215, 0, 0.7);
         }
 
         .slider::-moz-range-thumb {
           width: 24px;
           height: 24px;
-          background: linear-gradient(135deg, #D4AF37, #1e3a8a);
+          background: linear-gradient(135deg, #FFD700, #1e3a8a);
           border: 2px solid rgba(255, 255, 255, 0.3);
           border-radius: 50%;
           cursor: pointer;
-          box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+          box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
           transition: all 0.2s ease;
         }
 
         .slider::-moz-range-thumb:hover {
           transform: scale(1.1);
-          box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6);
+          box-shadow: 0 4px 12px rgba(255, 215, 0, 0.7);
         }
 
         .slider-markers {
@@ -280,25 +309,27 @@ export default function RevenueLossCalculator() {
         .input-icon {
           position: absolute;
           left: 16px;
-          color: rgba(212, 175, 55, 0.7);
+          color: rgba(255, 215, 0, 0.8);
         }
 
         .text-input {
           width: 100%;
           padding: 14px 16px 14px 44px;
-          background: rgba(0, 0, 0, 0.3);
-          border: 1px solid rgba(212, 175, 55, 0.2);
+          background: rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 215, 0, 0.3);
           border-radius: 12px;
           color: #ffffff;
           font-size: 16px;
           font-weight: 500;
           outline: none;
           transition: all 0.3s ease;
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
         }
 
         .text-input:focus {
-          border-color: #D4AF37;
-          box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+          border-color: #FFD700;
+          box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
         }
 
         .text-input::placeholder {
@@ -308,9 +339,11 @@ export default function RevenueLossCalculator() {
         .results-section {
           margin: 32px 0;
           padding: 24px;
-          background: rgba(0, 0, 0, 0.2);
-          border: 1px solid rgba(212, 175, 55, 0.15);
+          background: rgba(0, 0, 0, 0.05);
+          border: 1px solid rgba(255, 215, 0, 0.25);
           border-radius: 16px;
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
         }
 
         .result-item {
@@ -379,23 +412,23 @@ export default function RevenueLossCalculator() {
           display: block;
           width: 100%;
           padding: 16px 24px;
-          background: linear-gradient(135deg, #1e3a8a 0%, #D4AF37 100%);
-          color: #ffffff;
+          background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+          color: #000000;
           font-size: 16px;
-          font-weight: 600;
+          font-weight: 700;
           text-align: center;
           text-decoration: none;
           border: none;
           border-radius: 12px;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 20px rgba(30, 58, 138, 0.4);
+          box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
         }
 
         .cta-button:hover {
-          background: linear-gradient(135deg, #D4AF37 0%, #1e3a8a 100%);
-          box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5);
-          transform: translateY(-1px);
+          background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+          box-shadow: 0 6px 30px rgba(255, 215, 0, 0.7);
+          transform: translateY(-2px);
         }
 
         /* Responsive Design */

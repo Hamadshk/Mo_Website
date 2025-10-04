@@ -7,9 +7,8 @@ import math
 class TechAnimation:
     def __init__(self):
         self.companies = [
-            "OpenAI", "Anthropic", "Claude", "Meta", "Google",
-            "Microsoft", "Apple", "Amazon", "Tesla", "NVIDIA",
-            "DeepMind", "Perplexity", "Midjourney", "Stability AI"
+            "OpenAI", "N8N", "VAPI", "Zapier", "Anthropic", "Claude", "Meta", "Google",
+            "Microsoft", "Perplexity", "Artificial Intelligence"
         ]
         self.width = 80
         self.center = self.width // 2

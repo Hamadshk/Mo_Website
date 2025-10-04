@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import Navigation from '../components/Navigation'
 import Hero from '../components/Hero'
+import RevenueLossCalculator from '../components/RevenueLossCalculator'
 import Services from '../components/Services'
 import Contact from '../components/Contact'
 
@@ -31,6 +32,11 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+        <section className="calculator-section">
+          <div className="container">
+            <RevenueLossCalculator />
+          </div>
+        </section>
         <Services />
         <Contact />
       </main>

@@ -137,12 +137,13 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="scroll-indicator"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="hero-badge-bottom"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
       >
-        <div className="scroll-line" />
-        <span>Scroll to explore</span>
+        <Sparkles size={14} />
+        <span>Trusted by 500+ Businesses Worldwide</span>
       </motion.div>
     </section>
   )

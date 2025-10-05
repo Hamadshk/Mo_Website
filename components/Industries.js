@@ -1,7 +1,7 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Scale, DollarSign, Heart, Building, Sparkles as SparklesIcon, ChevronRight, ArrowUpRight } from 'lucide-react'
+import { Scale, DollarSign, Heart, Building, Sparkles as SparklesIcon, ChevronRight, ArrowUpRight, Wrench } from 'lucide-react'
 
 export default function Industries() {
   const ref = useRef(null)
@@ -93,6 +93,23 @@ export default function Industries() {
       metrics: { bookings: '+90%', retention: '88%', revenue: '+55%' },
       gradient: 'from-purple-500 to-pink-500',
       glowColor: 'emerald'
+    },
+    {
+      icon: Wrench,
+      title: 'Home Services',
+      shortDesc: 'HVAC, Plumbing & service excellence',
+      description: 'Voice Agents handle emergency calls, service requests, and appointment scheduling for HVAC and plumbing needs. Automations manage dispatch coordination, follow-up reminders, and maintenance schedules efficiently. Chatbots provide instant quotes, troubleshooting guidance, and 24/7 emergency service routing.',
+      applications: [
+        'Emergency service call routing',
+        'Automated appointment scheduling',
+        'Maintenance reminder system',
+        'Instant quote generation',
+        'Dispatch coordination',
+        'Follow-up & satisfaction surveys'
+      ],
+      metrics: { response: '<5min', bookings: '+85%', satisfaction: '4.8/5' },
+      gradient: 'from-orange-500 to-red-500',
+      glowColor: 'pink'
     }
   ]
 
@@ -210,7 +227,7 @@ export default function Industries() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 1.2 }}
                 >
-                  5+
+                  6+
                 </motion.div>
                 <div className="stat-label">Industries Served</div>
               </div>

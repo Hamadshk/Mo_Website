@@ -15,9 +15,10 @@ export default function AIVoiceReceptionist() {
 
   const currencies = [
     { code: 'USD', name: 'US Dollar', symbol: '$' },
+    { code: 'GBP', name: 'British Pound', symbol: '£' },
+    { code: 'EUR', name: 'Euro', symbol: '€' },
     { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
     { code: 'CAD', name: 'Canadian Dollar', symbol: 'CA$' },
-    { code: 'EUR', name: 'Euro', symbol: '€' },
     { code: 'AED', name: 'UAE Dirham', symbol: 'AED' },
     { code: 'SAR', name: 'Saudi Riyal', symbol: 'SAR' }
   ]

@@ -1,13 +1,14 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { TrendingDown, DollarSign, Users, Clock } from 'lucide-react'
+import { TrendingDown, DollarSign, Users, Clock, Globe } from 'lucide-react'
 
 export default function AIAutomation() {
   const [hoursPerDay, setHoursPerDay] = useState(4)
   const [numStaff, setNumStaff] = useState(5)
   const [hourlyRate, setHourlyRate] = useState(50)
   const [inputValue, setInputValue] = useState('50')
+  const [currency, setCurrency] = useState('USD')
 
   // Calculations
   const dailyLossPerStaff = hoursPerDay * hourlyRate
@@ -16,6 +17,15 @@ export default function AIAutomation() {
   const totalMonthlyLoss = totalDailyLoss * 22
   const yearlyLossPerStaff = dailyLossPerStaff * 260 // Working days per year
   const totalYearlyLoss = totalDailyLoss * 260
+
+  const currencies = [
+    { code: 'USD', name: 'US Dollar', symbol: '$' },
+    { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
+    { code: 'CAD', name: 'Canadian Dollar', symbol: 'CA$' },
+    { code: 'EUR', name: 'Euro', symbol: '€' },
+    { code: 'AED', name: 'UAE Dirham', symbol: 'AED' },
+    { code: 'SAR', name: 'Saudi Riyal', symbol: 'SAR' }
+  ]
 
   const handleInputChange = (e) => {
     const value = e.target.value
@@ -35,7 +45,7 @@ export default function AIAutomation() {
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: currency,
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount)
@@ -100,13 +110,35 @@ export default function AIAutomation() {
         </div>
       </div>
 
+      {/* Currency Selector */}
+      <div className="input-section">
+        <label className="input-label">
+          Currency
+        </label>
+        <div className="currency-selector-wrapper">
+          <Globe className="input-icon" size={18} />
+          <select
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+            className="currency-select"
+            data-testid="currency-select-automation"
+          >
+            {currencies.map((curr) => (
+              <option key={curr.code} value={curr.code}>
+                {curr.code} - {curr.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       {/* Hourly Rate Input */}
       <div className="input-section">
         <label className="input-label">
-          Hourly Rate ($)
+          Hourly Rate ({currencies.find(c => c.code === currency)?.symbol})
         </label>
         <div className="input-wrapper">
-          <DollarSign className="input-icon" size={18} />
+          <span className="currency-symbol-icon">{currencies.find(c => c.code === currency)?.symbol}</span>
           <input
             type="text"
             inputMode="numeric"
@@ -123,6 +155,7 @@ export default function AIAutomation() {
             }}
             className="text-input"
             placeholder="50"
+            data-testid="hourly-rate-input"
           />
         </div>
       </div>
@@ -137,10 +170,11 @@ export default function AIAutomation() {
               <div className="result-label">Lost revenue per day</div>
               <motion.div
                 className="result-amount-small"
-                key={`daily-staff-${dailyLossPerStaff}`}
+                key={`daily-staff-${dailyLossPerStaff}-${currency}`}
                 initial={{ opacity: 0.8 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
+                data-testid="daily-loss-per-staff"
               >
                 {formatCurrency(dailyLossPerStaff)}
               </motion.div>
@@ -151,10 +185,11 @@ export default function AIAutomation() {
               <div className="result-label">Lost revenue per month</div>
               <motion.div
                 className="result-amount-small"
-                key={`monthly-staff-${monthlyLossPerStaff}`}
+                key={`monthly-staff-${monthlyLossPerStaff}-${currency}`}
                 initial={{ opacity: 0.8 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
+                data-testid="monthly-loss-per-staff"
               >
                 {formatCurrency(monthlyLossPerStaff)}
               </motion.div>
@@ -165,10 +200,11 @@ export default function AIAutomation() {
               <div className="result-label">Lost revenue per year</div>
               <motion.div
                 className="result-amount-small"
-                key={`yearly-staff-${yearlyLossPerStaff}`}
+                key={`yearly-staff-${yearlyLossPerStaff}-${currency}`}
                 initial={{ opacity: 0.8 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
+                data-testid="yearly-loss-per-staff"
               >
                 {formatCurrency(yearlyLossPerStaff)}
               </motion.div>
@@ -184,10 +220,11 @@ export default function AIAutomation() {
               <div className="result-label">Lost revenue per day</div>
               <motion.div
                 className="result-amount-small"
-                key={`daily-total-${totalDailyLoss}`}
+                key={`daily-total-${totalDailyLoss}-${currency}`}
                 initial={{ opacity: 0.8 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
+                data-testid="total-daily-loss"
               >
                 {formatCurrency(totalDailyLoss)}
               </motion.div>
@@ -198,10 +235,11 @@ export default function AIAutomation() {
               <div className="result-label">Lost revenue per month</div>
               <motion.div
                 className="result-amount-small"
-                key={`monthly-total-${totalMonthlyLoss}`}
+                key={`monthly-total-${totalMonthlyLoss}-${currency}`}
                 initial={{ opacity: 0.8 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
+                data-testid="total-monthly-loss"
               >
                 {formatCurrency(totalMonthlyLoss)}
               </motion.div>
@@ -212,10 +250,11 @@ export default function AIAutomation() {
               <div className="result-label">Lost revenue per year</div>
               <motion.div
                 className="result-amount-medium"
-                key={`yearly-total-${totalYearlyLoss}`}
+                key={`yearly-total-${totalYearlyLoss}-${currency}`}
                 initial={{ opacity: 0.8 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
+                data-testid="total-yearly-loss"
               >
                 {formatCurrency(totalYearlyLoss)}
               </motion.div>

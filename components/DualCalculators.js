@@ -154,9 +154,22 @@ export default function DualCalculators() {
           height: 18px;
         }
 
+        .currency-symbol-icon {
+          position: absolute;
+          left: 12px;
+          color: rgba(255, 215, 0, 0.8);
+          font-size: 13px;
+          font-weight: 600;
+          pointer-events: none;
+          z-index: 1;
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }
+
         .text-input {
           width: 100%;
-          padding: 10px 12px 10px 36px;
+          padding: 10px 12px 10px 50px;
           background: rgba(0, 0, 0, 0.1);
           border: 1px solid rgba(255, 215, 0, 0.3);
           border-radius: 10px;
@@ -176,6 +189,46 @@ export default function DualCalculators() {
 
         .text-input::placeholder {
           color: rgba(255, 255, 255, 0.3);
+        }
+
+        .currency-selector-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+
+        .currency-select {
+          width: 100%;
+          padding: 10px 12px 10px 36px;
+          background: rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 215, 0, 0.3);
+          border-radius: 10px;
+          color: #ffffff;
+          font-size: 14px;
+          font-weight: 500;
+          outline: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD700' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 12px center;
+          padding-right: 36px;
+        }
+
+        .currency-select:focus {
+          border-color: #FFD700;
+          box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
+        }
+
+        .currency-select option {
+          background: #1a1a1a;
+          color: #ffffff;
+          padding: 10px;
         }
 
         .results-section {

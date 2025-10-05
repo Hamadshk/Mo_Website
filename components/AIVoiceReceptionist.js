@@ -1,16 +1,26 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { TrendingDown, DollarSign, Phone } from 'lucide-react'
+import { TrendingDown, DollarSign, Phone, Globe } from 'lucide-react'
 
 export default function AIVoiceReceptionist() {
   const [missedCalls, setMissedCalls] = useState(10)
   const [avgClientValue, setAvgClientValue] = useState(500)
   const [inputValue, setInputValue] = useState('500')
+  const [currency, setCurrency] = useState('USD')
 
   const dailyLoss = missedCalls * avgClientValue
   const monthlyLoss = dailyLoss * 30
   const yearlyLoss = dailyLoss * 365
+
+  const currencies = [
+    { code: 'USD', name: 'US Dollar', symbol: '$' },
+    { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
+    { code: 'CAD', name: 'Canadian Dollar', symbol: 'CA$' },
+    { code: 'EUR', name: 'Euro', symbol: '€' },
+    { code: 'AED', name: 'UAE Dirham', symbol: 'AED' },
+    { code: 'SAR', name: 'Saudi Riyal', symbol: 'SAR' }
+  ]
 
   const handleInputChange = (e) => {
     const value = e.target.value
@@ -30,7 +40,7 @@ export default function AIVoiceReceptionist() {
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: currency,
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount)
@@ -73,13 +83,35 @@ export default function AIVoiceReceptionist() {
         </div>
       </div>
 
+      {/* Currency Selector */}
+      <div className="input-section">
+        <label className="input-label">
+          Currency
+        </label>
+        <div className="currency-selector-wrapper">
+          <Globe className="input-icon" size={18} />
+          <select
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+            className="currency-select"
+            data-testid="currency-select"
+          >
+            {currencies.map((curr) => (
+              <option key={curr.code} value={curr.code}>
+                {curr.code} - {curr.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       {/* Average Client Value Input */}
       <div className="input-section">
         <label className="input-label">
-          Average client value ($)
+          Average client value ({currencies.find(c => c.code === currency)?.symbol})
         </label>
         <div className="input-wrapper">
-          <DollarSign className="input-icon" size={18} />
+          <span className="currency-symbol-icon">{currencies.find(c => c.code === currency)?.symbol}</span>
           <input
             type="text"
             inputMode="numeric"
@@ -96,6 +128,7 @@ export default function AIVoiceReceptionist() {
             }}
             className="text-input"
             placeholder="500"
+            data-testid="client-value-input"
           />
         </div>
       </div>
@@ -108,10 +141,11 @@ export default function AIVoiceReceptionist() {
             <div className="result-label">Lost revenue per day</div>
             <motion.div
               className="result-amount"
-              key={`daily-${dailyLoss}`}
+              key={`daily-${dailyLoss}-${currency}`}
               initial={{ opacity: 0.8 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
+              data-testid="daily-loss"
             >
               {formatCurrency(dailyLoss)}
             </motion.div>
@@ -123,10 +157,11 @@ export default function AIVoiceReceptionist() {
             <div className="result-label">Lost revenue per month</div>
             <motion.div
               className="result-amount"
-              key={`monthly-${monthlyLoss}`}
+              key={`monthly-${monthlyLoss}-${currency}`}
               initial={{ opacity: 0.8 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
+              data-testid="monthly-loss"
             >
               {formatCurrency(monthlyLoss)}
             </motion.div>
@@ -138,10 +173,11 @@ export default function AIVoiceReceptionist() {
             <div className="result-label">Lost revenue per year</div>
             <motion.div
               className="result-amount large"
-              key={`yearly-${yearlyLoss}`}
+              key={`yearly-${yearlyLoss}-${currency}`}
               initial={{ opacity: 0.8 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
+              data-testid="yearly-loss"
             >
               {formatCurrency(yearlyLoss)}
             </motion.div>

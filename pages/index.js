@@ -2,8 +2,9 @@
 import Head from 'next/head'
 import Navigation from '../components/Navigation'
 import Hero from '../components/Hero'
-import RevenueLossCalculator from '../components/RevenueLossCalculator'
+import DualCalculators from '../components/DualCalculators'
 import Services from '../components/Services'
+import Industries from '../components/Industries'
 import Contact from '../components/Contact'
 
 export default function Home() {
@@ -34,10 +35,11 @@ export default function Home() {
         <Hero />
         <section className="calculator-section">
           <div className="container">
-            <RevenueLossCalculator />
+            <DualCalculators />
           </div>
         </section>
         <Services />
+        <Industries />
         <Contact />
       </main>
     </div>

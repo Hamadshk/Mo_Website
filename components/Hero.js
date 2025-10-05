@@ -87,7 +87,7 @@ export default function Hero() {
           <h1 className="hero-title hero-animate-2">
             Build the Future with
             <br />
-            <span className="gradient-text">Intelligent Automation</span>
+            <span className="gradient-text">Intelligent AI Agents and Automation</span>
           </h1>
 
           <p className="hero-subtitle hero-animate-3">
@@ -98,16 +98,16 @@ export default function Hero() {
 
           <div className="hero-stats hero-animate-4">
             <div className="stat">
-              <span className="stat-number gradient-text">500+</span>
-              <span className="stat-label">Businesses Transformed</span>
-            </div>
-            <div className="stat">
-              <span className="stat-number gradient-text">10M+</span>
-              <span className="stat-label">AI Interactions</span>
-            </div>
-            <div className="stat">
-              <span className="stat-number gradient-text">85%</span>
+              <span className="stat-number gradient-text">Up to 85%</span>
               <span className="stat-label">Cost Reduction</span>
+            </div>
+            <div className="stat">
+              <span className="stat-number gradient-text">Up to 90%</span>
+              <span className="stat-label">Efficiency Increase</span>
+            </div>
+            <div className="stat">
+              <span className="stat-number gradient-text">24/7</span>
+              <span className="stat-label">Availability</span>
             </div>
           </div>
 

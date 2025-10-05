@@ -1,7 +1,7 @@
 'use client'
 import { motion, useInView, useMotionValue, useTransform } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Phone, Bot, TrendingUp, Zap, Brain, Shield, ChevronRight, ArrowUpRight, Sparkles } from 'lucide-react'
+import { Phone, Bot, TrendingUp, Zap, Brain, Shield, ChevronRight, ArrowUpRight, Sparkles, Database } from 'lucide-react'
 
 export default function Services() {
   const ref = useRef(null)
@@ -59,6 +59,23 @@ export default function Services() {
       metrics: { conversion: '340%', roi: '12x', engagement: '+180%' },
       gradient: 'from-pink-500 to-orange-500',
       glowColor: 'pink'
+    },
+    {
+      icon: Database,
+      title: 'Lead Generation & Scraping',
+      shortDesc: 'Automated prospect discovery at scale',
+      description: 'Harness powerful data extraction tools like Apollo, ZoomInfo, Apify, and Outscraper to build comprehensive lead databases. Automate entire workflows with n8n integration for continuous prospect enrichment.',
+      features: [
+        'Apollo.io Integration',
+        'ZoomInfo Data Enrichment',
+        'Apify Web Scraping',
+        'Outscraper Automation',
+        'n8n Workflow Orchestration',
+        'Real-time Data Validation'
+      ],
+      metrics: { leads: '10K+/mo', accuracy: '95%', automation: '100%' },
+      gradient: 'from-violet-500 to-purple-500',
+      glowColor: 'blue'
     }
   ]
 

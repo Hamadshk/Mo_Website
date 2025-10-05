@@ -197,22 +197,18 @@ export default function TechAnimation() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(90deg,
-            rgba(15, 23, 42, 0.3) 0%,
-            rgba(15, 23, 42, 0.6) 50%,
-            rgba(15, 23, 42, 0.3) 100%
-          );
+          background: transparent;
           border-radius: 12px;
-          backdrop-filter: blur(15px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+          backdrop-filter: blur(8px);
+          border-top: 1px solid rgba(255, 215, 0, 0.15);
+          border-bottom: 1px solid rgba(255, 215, 0, 0.15);
         }
 
         .fade-overlay {
           position: absolute;
           top: 0;
           bottom: 0;
-          width: 80px;
+          width: 100px;
           pointer-events: none;
           z-index: 2;
         }
@@ -220,18 +216,18 @@ export default function TechAnimation() {
         .fade-left {
           left: 0;
           background: linear-gradient(90deg,
-            rgba(15, 23, 42, 1) 0%,
-            rgba(15, 23, 42, 0.8) 40%,
-            rgba(15, 23, 42, 0) 100%
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.6) 30%,
+            rgba(0, 0, 0, 0) 100%
           );
         }
 
         .fade-right {
           right: 0;
           background: linear-gradient(90deg,
-            rgba(15, 23, 42, 0) 0%,
-            rgba(15, 23, 42, 0.8) 60%,
-            rgba(15, 23, 42, 1) 100%
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.6) 70%,
+            rgba(0, 0, 0, 1) 100%
           );
         }
 
@@ -252,9 +248,9 @@ export default function TechAnimation() {
           gap: 12px;
           padding: 10px 18px;
           border-radius: 8px;
-          background: rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: transparent;
+          backdrop-filter: none;
+          border: none;
           white-space: nowrap;
           transition: none;
           transform: translateZ(0);
@@ -271,17 +267,20 @@ export default function TechAnimation() {
         .company-logo {
           width: 20px;
           height: 20px;
-          color: #ffffff;
-          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+          color: #FFD700;
+          filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
         }
 
         .tech-name {
           font-size: 1rem;
           font-weight: 600;
-          color: #ffffff;
+          background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           letter-spacing: 0.02em;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+          text-shadow: none;
         }
 
         @media (max-width: 768px) {

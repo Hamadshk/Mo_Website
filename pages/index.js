@@ -5,6 +5,7 @@ import Hero from '../components/Hero'
 import DualCalculators from '../components/DualCalculators'
 import Services from '../components/Services'
 import Industries from '../components/Industries'
+import Reviews from '../components/Reviews'
 import Contact from '../components/Contact'
 
 export default function Home() {
@@ -40,6 +41,7 @@ export default function Home() {
         </section>
         <Services />
         <Industries />
+        <Reviews />
         <Contact />
       </main>
     </div>

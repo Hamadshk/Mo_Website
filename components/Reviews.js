@@ -222,13 +222,13 @@ export default function Reviews() {
         .reviews-carousel {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: var(--space-2xl);
-          margin-bottom: var(--space-2xl);
+          gap: 32px;
+          margin-bottom: var(--space-3xl);
         }
 
         .review-card {
           position: relative;
-          padding: var(--space-3xl);
+          padding: 40px;
           border-radius: 24px;
           background: linear-gradient(
             135deg,
@@ -244,6 +244,8 @@ export default function Reviews() {
             inset 0 1px 0 rgba(255, 255, 255, 0.1),
             0 0 0 1px rgba(255, 215, 0, 0.1);
           will-change: transform;
+          display: flex;
+          flex-direction: column;
         }
 
         .review-card:hover {
@@ -270,16 +272,17 @@ export default function Reviews() {
 
         .quote-icon {
           position: absolute;
-          top: var(--space-xl);
-          right: var(--space-xl);
+          top: 32px;
+          right: 32px;
           color: rgba(255, 215, 0, 0.15);
           filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.3));
         }
 
         .review-rating {
           display: flex;
-          gap: 6px;
-          margin-bottom: var(--space-lg);
+          gap: 8px;
+          margin-bottom: 24px;
+          margin-top: 8px;
         }
 
         .review-rating svg {
@@ -288,33 +291,34 @@ export default function Reviews() {
 
         .review-text {
           color: rgba(255, 255, 255, 0.9);
-          line-height: 1.8;
-          font-size: 1rem;
-          margin-bottom: var(--space-2xl);
-          min-height: 140px;
+          line-height: 1.85;
+          font-size: 1.05rem;
+          margin-bottom: 32px;
+          min-height: 150px;
           font-weight: 400;
-          letter-spacing: 0.01em;
+          letter-spacing: 0.015em;
+          flex-grow: 1;
         }
 
         .review-author {
           display: flex;
           align-items: center;
-          gap: var(--space-lg);
-          padding-top: var(--space-lg);
+          gap: 20px;
+          padding-top: 24px;
           border-top: 1px solid rgba(255, 215, 0, 0.15);
           margin-top: auto;
         }
 
         .author-avatar {
-          width: 56px;
-          height: 56px;
+          width: 60px;
+          height: 60px;
           border-radius: 50%;
           background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
           border: 2px solid rgba(255, 215, 0, 0.4);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 28px;
+          font-size: 30px;
           flex-shrink: 0;
           box-shadow:
             0 4px 12px rgba(255, 215, 0, 0.2),
@@ -323,22 +327,25 @@ export default function Reviews() {
 
         .author-info {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
         }
 
         .author-name {
           color: #ffffff;
-          font-size: 1.1rem;
+          font-size: 1.15rem;
           font-weight: 700;
-          margin: 0 0 6px 0;
+          margin: 0;
           letter-spacing: -0.01em;
         }
 
         .author-role {
           color: rgba(255, 215, 0, 0.9);
-          font-size: 0.9rem;
+          font-size: 0.95rem;
           margin: 0;
           font-weight: 500;
-          line-height: 1.4;
+          line-height: 1.5;
         }
 
         .carousel-dots {
@@ -376,8 +383,8 @@ export default function Reviews() {
         .reviews-stats {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: var(--space-2xl);
-          padding: var(--space-3xl);
+          gap: 40px;
+          padding: 48px 40px;
           border-radius: 24px;
           background: linear-gradient(
             135deg,
@@ -394,7 +401,7 @@ export default function Reviews() {
         }
 
         .stat-item {
-          padding: var(--space-lg);
+          padding: 20px 16px;
           position: relative;
         }
 
@@ -415,31 +422,40 @@ export default function Reviews() {
         }
 
         .stat-number {
-          font-size: 2.75rem;
+          font-size: 3rem;
           font-weight: 800;
-          margin-bottom: var(--space-sm);
+          margin-bottom: 12px;
           letter-spacing: -0.02em;
           text-shadow: 0 2px 12px rgba(255, 215, 0, 0.3);
         }
 
         .stat-label {
           color: rgba(255, 255, 255, 0.7);
-          font-size: 0.95rem;
+          font-size: 1rem;
           font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.08em;
         }
 
         /* Responsive Styles */
         @media (max-width: 1024px) {
           .reviews-carousel {
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-xl);
+            gap: 28px;
+          }
+
+          .review-card {
+            padding: 36px;
           }
 
           .reviews-stats {
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-lg);
+            gap: 32px;
+            padding: 40px 32px;
+          }
+
+          .stat-item {
+            padding: 16px 12px;
           }
 
           .stat-item:nth-child(2)::after {
@@ -454,30 +470,104 @@ export default function Reviews() {
         @media (max-width: 768px) {
           .reviews-carousel {
             grid-template-columns: 1fr;
-            gap: var(--space-lg);
+            gap: 24px;
           }
 
           .review-card {
-            padding: var(--space-2xl);
+            padding: 32px;
           }
 
           .review-text {
             min-height: auto;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            margin-bottom: 28px;
+          }
+
+          .review-rating {
+            margin-bottom: 20px;
+          }
+
+          .review-author {
+            gap: 16px;
+            padding-top: 20px;
           }
 
           .reviews-stats {
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-md);
-            padding: var(--space-xl);
+            gap: 24px;
+            padding: 36px 28px;
+          }
+
+          .stat-item {
+            padding: 14px 10px;
+          }
+
+          .stat-number {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+          }
+
+          .stat-label {
+            font-size: 0.9rem;
+          }
+
+          .author-avatar {
+            width: 52px;
+            height: 52px;
+            font-size: 26px;
+          }
+
+          .author-name {
+            font-size: 1.05rem;
+          }
+
+          .author-role {
+            font-size: 0.9rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .review-card {
+            padding: 28px;
+          }
+
+          .review-text {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
+          }
+
+          .review-rating {
+            margin-bottom: 16px;
+            gap: 6px;
+          }
+
+          .review-author {
+            gap: 14px;
+            padding-top: 18px;
+          }
+
+          .reviews-stats {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 32px 24px;
+          }
+
+          .stat-item {
+            padding: 12px;
+          }
+
+          .stat-item::after {
+            display: none !important;
           }
 
           .stat-number {
             font-size: 2.25rem;
+            margin-bottom: 8px;
           }
 
           .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
           }
 
           .author-avatar {
@@ -492,28 +582,6 @@ export default function Reviews() {
 
           .author-role {
             font-size: 0.85rem;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .review-card {
-            padding: var(--space-xl);
-          }
-
-          .reviews-stats {
-            grid-template-columns: 1fr;
-          }
-
-          .stat-item::after {
-            display: none !important;
-          }
-
-          .stat-number {
-            font-size: 2rem;
-          }
-
-          .stat-label {
-            font-size: 0.75rem;
           }
         }
       `}</style>

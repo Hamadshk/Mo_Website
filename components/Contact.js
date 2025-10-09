@@ -435,7 +435,7 @@ export default function Contact() {
             <div className="footer-left">
               <div className="footer-logo">
                 <img
-                  src="/images/Mo_Logo.jpeg"
+                  src="/images/Mo_Logo.png"
                   alt="Mo Logo"
                   className="footer-logo-img"
                 />

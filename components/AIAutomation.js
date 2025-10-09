@@ -4,11 +4,12 @@ import { motion } from 'framer-motion'
 import { TrendingDown, DollarSign, Users, Clock, Globe } from 'lucide-react'
 
 export default function AIAutomation() {
-  const [hoursPerDay, setHoursPerDay] = useState(4)
-  const [numStaff, setNumStaff] = useState(5)
-  const [hourlyRate, setHourlyRate] = useState(50)
-  const [inputValue, setInputValue] = useState('50')
+  const [hoursPerDay, setHoursPerDay] = useState(0)
+  const [numStaff, setNumStaff] = useState(0)
+  const [hourlyRate, setHourlyRate] = useState(0)
+  const [inputValue, setInputValue] = useState('0')
   const [currency, setCurrency] = useState('USD')
+  const [hasInteracted, setHasInteracted] = useState(false)
 
   // Calculations
   const dailyLossPerStaff = hoursPerDay * hourlyRate
@@ -54,115 +55,134 @@ export default function AIAutomation() {
 
   return (
     <motion.div
-      className="calculator-card"
+      className="calculator-card calculator-card-sideways"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
-      {/* Header */}
-      <div className="calculator-header">
-        <div className="header-icon">
-          <Clock size={24} />
+      {/* Left Side - Inputs */}
+      <div className="calculator-inputs">
+        {/* Header */}
+        <div className="calculator-header">
+          <div className="header-icon">
+            <Clock size={24} />
+          </div>
+          <h2 className="calculator-title">AI Automation</h2>
         </div>
-        <h2 className="calculator-title">AI Automation</h2>
-      </div>
 
-      {/* Hours spent on admin Slider */}
-      <div className="input-section">
-        <label className="input-label">
-          Hours spent on admin: <span className="value-display">{hoursPerDay === 12 ? '12+' : hoursPerDay}</span>
-        </label>
-        <div className="slider-container">
-          <input
-            type="range"
-            min="1"
-            max="12"
-            value={hoursPerDay}
-            onChange={(e) => setHoursPerDay(parseInt(e.target.value))}
-            className="slider"
-          />
-          <div className="slider-markers">
-            <span>1</span>
-            <span>6</span>
-            <span>12+</span>
+        {/* Hours spent on admin Slider */}
+        <div className="input-section">
+          <label className="input-label">
+            Hours spent on admin: <span className="value-display">{hoursPerDay === 12 ? '12+' : hoursPerDay}</span>
+          </label>
+          <div className="slider-container">
+            <input
+              type="range"
+              min="0"
+              max="12"
+              value={hoursPerDay}
+              onChange={(e) => {
+                setHoursPerDay(parseInt(e.target.value))
+                setHasInteracted(true)
+              }}
+              className="slider"
+            />
+            <div className="slider-markers">
+              <span>0</span>
+              <span>6</span>
+              <span>12+</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Number of staff Slider */}
+        <div className="input-section">
+          <label className="input-label">
+            Number of staff: <span className="value-display">{numStaff === 20 ? '20+' : numStaff}</span>
+          </label>
+          <div className="slider-container">
+            <input
+              type="range"
+              min="0"
+              max="20"
+              value={numStaff}
+              onChange={(e) => {
+                setNumStaff(parseInt(e.target.value))
+                setHasInteracted(true)
+              }}
+              className="slider"
+            />
+            <div className="slider-markers">
+              <span>0</span>
+              <span>10</span>
+              <span>20+</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Currency Selector */}
+        <div className="input-section">
+          <label className="input-label">
+            Currency
+          </label>
+          <div className="currency-selector-wrapper">
+            <Globe className="input-icon" size={18} />
+            <select
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+              className="currency-select"
+              data-testid="currency-select-automation"
+            >
+              {currencies.map((curr) => (
+                <option key={curr.code} value={curr.code}>
+                  {curr.code} - {curr.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Hourly Rate Input */}
+        <div className="input-section">
+          <label className="input-label">
+            Hourly Rate ({currencies.find(c => c.code === currency)?.symbol})
+          </label>
+          <div className="input-wrapper">
+            <span className="currency-symbol-icon">{currencies.find(c => c.code === currency)?.symbol}</span>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={inputValue}
+              onChange={(e) => {
+                handleInputChange(e)
+                setHasInteracted(true)
+              }}
+              onBlur={(e) => {
+                // Format the input on blur
+                if (e.target.value === '' || parseFloat(e.target.value) === 0) {
+                  setInputValue('0')
+                  setHourlyRate(0)
+                } else {
+                  setInputValue(hourlyRate.toString())
+                }
+              }}
+              className="text-input"
+              placeholder="50"
+              data-testid="hourly-rate-input"
+            />
           </div>
         </div>
       </div>
 
-      {/* Number of staff Slider */}
-      <div className="input-section">
-        <label className="input-label">
-          Number of staff: <span className="value-display">{numStaff === 20 ? '20+' : numStaff}</span>
-        </label>
-        <div className="slider-container">
-          <input
-            type="range"
-            min="1"
-            max="20"
-            value={numStaff}
-            onChange={(e) => setNumStaff(parseInt(e.target.value))}
-            className="slider"
-          />
-          <div className="slider-markers">
-            <span>1</span>
-            <span>10</span>
-            <span>20+</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Currency Selector */}
-      <div className="input-section">
-        <label className="input-label">
-          Currency
-        </label>
-        <div className="currency-selector-wrapper">
-          <Globe className="input-icon" size={18} />
-          <select
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-            className="currency-select"
-            data-testid="currency-select-automation"
-          >
-            {currencies.map((curr) => (
-              <option key={curr.code} value={curr.code}>
-                {curr.code} - {curr.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* Hourly Rate Input */}
-      <div className="input-section">
-        <label className="input-label">
-          Hourly Rate ({currencies.find(c => c.code === currency)?.symbol})
-        </label>
-        <div className="input-wrapper">
-          <span className="currency-symbol-icon">{currencies.find(c => c.code === currency)?.symbol}</span>
-          <input
-            type="text"
-            inputMode="numeric"
-            value={inputValue}
-            onChange={handleInputChange}
-            onBlur={(e) => {
-              // Format the input on blur
-              if (e.target.value === '' || parseFloat(e.target.value) === 0) {
-                setInputValue('0')
-                setHourlyRate(0)
-              } else {
-                setInputValue(hourlyRate.toString())
-              }
-            }}
-            className="text-input"
-            placeholder="50"
-            data-testid="hourly-rate-input"
-          />
-        </div>
-      </div>
-
-      {/* Results */}
-      <div className="results-section">
+      {/* Right Side - Results */}
+      {hasInteracted && (
+        <motion.div
+          className="calculator-results"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="results-section">
         {/* Per Staff Member Results */}
         <div className="result-group">
           <div className="result-group-title">Per Staff Member</div>
@@ -278,6 +298,8 @@ export default function AIAutomation() {
           Automate Your Tasks - Book Demo
         </motion.a>
       </div>
+        </motion.div>
+      )}
     </motion.div>
   )
 }

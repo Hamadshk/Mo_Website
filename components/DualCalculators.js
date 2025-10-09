@@ -12,11 +12,11 @@ export default function DualCalculators() {
 
       <style jsx global>{`
         .dual-calculators-container {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
           width: 100%;
-          max-width: 1000px;
+          max-width: 1200px;
           margin: 0 auto;
         }
 
@@ -30,6 +30,41 @@ export default function DualCalculators() {
             0 0 20px rgba(255, 215, 0, 0.2);
           backdrop-filter: blur(15px) saturate(180%);
           -webkit-backdrop-filter: blur(15px) saturate(180%);
+        }
+
+        /* Sideways layout for desktop */
+        @media (min-width: 1025px) {
+          .calculator-card-sideways {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+          }
+
+          .calculator-inputs {
+            flex: 0 0 45%;
+            min-width: 0;
+          }
+
+          .calculator-results {
+            flex: 1;
+            min-width: 0;
+          }
+        }
+
+        /* Stack layout for mobile/tablet */
+        @media (max-width: 1024px) {
+          .calculator-card-sideways {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .calculator-inputs {
+            width: 100%;
+          }
+
+          .calculator-results {
+            width: 100%;
+          }
         }
 
         .calculator-header {
@@ -370,7 +405,6 @@ export default function DualCalculators() {
         /* Responsive Design */
         @media (max-width: 1024px) {
           .dual-calculators-container {
-            grid-template-columns: 1fr;
             gap: 24px;
             max-width: 600px;
           }

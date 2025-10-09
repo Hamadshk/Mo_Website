@@ -1,12 +1,12 @@
 'use client'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Scale, DollarSign, Heart, Building, Sparkles as SparklesIcon, ChevronRight, ArrowUpRight, Wrench } from 'lucide-react'
+import { Scale, DollarSign, Heart, Building, Sparkles as SparklesIcon, Wrench, ChevronDown, ChevronUp } from 'lucide-react'
 
 export default function Industries() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, threshold: 0.1 })
-  const [hoveredCard, setHoveredCard] = useState(null)
+  const [expandedCard, setExpandedCard] = useState(null)
 
   const industries = [
     {
@@ -141,74 +141,70 @@ export default function Industries() {
           </p>
         </motion.div>
 
-        <div className="services-grid">
-          {industries.map((industry, index) => (
-            <motion.div
-              key={index}
-              className={`service-card glass ${hoveredCard === index ? 'hovered' : ''}`}
-              initial={{ opacity: 0, y: 60 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.15,
-                ease: [0.6, 0.05, 0.01, 0.9]
-              }}
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
-              whileHover={{ y: -8 }}
-            >
-              <div className="card-header">
-                <motion.div
-                  className={`service-icon glow-${industry.glowColor}`}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <industry.icon size={28} />
-                </motion.div>
-                <div className="service-header-text">
-                  <h3 className="service-title">{industry.title}</h3>
-                  <p className="service-short-desc">{industry.shortDesc}</p>
-                </div>
-              </div>
-
-              <p className="service-description">{industry.description}</p>
-
-              <div className="service-metrics">
-                {Object.entries(industry.metrics).map(([key, value]) => (
-                  <div key={key} className="metric">
-                    <span className="metric-value gradient-text">{value}</span>
-                    <span className="metric-label">{key}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="service-features">
-                {industry.applications.map((application, idx) => (
-                  <motion.div
-                    key={idx}
-                    className="feature-item"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: (index * 0.15) + (idx * 0.08) + 0.5 }}
-                  >
-                    <ChevronRight size={14} />
-                    <span>{application}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <motion.button
-                className="service-cta"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+        {/* Expandable Industry Cards Grid */}
+        <div className="industries-compact-grid">
+          {industries.map((industry, index) => {
+            const isExpanded = expandedCard === index
+            return (
+              <motion.div
+                key={index}
+                className={`industry-expandable-card glass ${isExpanded ? 'expanded' : ''}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.05,
+                }}
               >
-                <span>Explore Solutions</span>
-                <ArrowUpRight size={16} />
-              </motion.button>
+                {/* Card Header - Always Visible */}
+                <div
+                  className="industry-card-header"
+                  onClick={() => setExpandedCard(isExpanded ? null : index)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <div className={`industry-icon-wrapper glow-${industry.glowColor}`}>
+                    <industry.icon size={32} />
+                  </div>
+                  <h3 className="industry-icon-title">{industry.title}</h3>
+                  <p className="industry-icon-subtitle">{industry.shortDesc}</p>
 
-              <div className={`card-glow glow-${industry.glowColor}`} />
-            </motion.div>
-          ))}
+                  {/* Expand/Collapse Icon */}
+                  <div className={`expand-icon ${isExpanded ? 'rotated' : ''}`}>
+                    <ChevronDown size={20} />
+                  </div>
+
+                  <div className={`icon-card-glow glow-${industry.glowColor}`} />
+                </div>
+
+                {/* Expanded Content */}
+                {isExpanded && (
+                  <div className="industry-expanded-content">
+                    <div className="expanded-content-inner">
+                      <p className="industry-description">{industry.description}</p>
+
+                      <div className="industry-metrics-compact">
+                        {Object.entries(industry.metrics).map(([key, value]) => (
+                          <div key={key} className="metric-compact">
+                            <span className="metric-value-compact gradient-text">{value}</span>
+                            <span className="metric-label-compact">{key}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="industry-applications-compact">
+                        <h4 className="applications-title">Key Applications:</h4>
+                        <ul className="applications-list">
+                          {industry.applications.slice(0, 4).map((app, idx) => (
+                            <li key={idx}>{app}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            )
+          })}
         </div>
 
         <motion.div

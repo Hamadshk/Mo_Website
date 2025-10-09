@@ -2,7 +2,7 @@
 import { motion, useTransform, useScroll } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import { ArrowRight, Play, Sparkles } from 'lucide-react'
-import MatrixRain from './MatrixRain'
+// import MatrixRain from './MatrixRain'
 import TechAnimation from './TechAnimation'
 
 export default function Hero() {
@@ -55,7 +55,7 @@ export default function Hero() {
 
   return (
     <section className="hero noise" ref={containerRef} id="home">
-      <MatrixRain />
+      {/* <MatrixRain /> */}
       <div className="hero-bg">
         <div className="coding-animation">
           {isMounted && codingChars.map((charData, i) => (

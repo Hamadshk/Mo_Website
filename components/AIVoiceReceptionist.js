@@ -4,10 +4,11 @@ import { motion } from 'framer-motion'
 import { TrendingDown, DollarSign, Phone, Globe } from 'lucide-react'
 
 export default function AIVoiceReceptionist() {
-  const [missedCalls, setMissedCalls] = useState(10)
-  const [avgClientValue, setAvgClientValue] = useState(500)
-  const [inputValue, setInputValue] = useState('500')
+  const [missedCalls, setMissedCalls] = useState(0)
+  const [avgClientValue, setAvgClientValue] = useState(0)
+  const [inputValue, setInputValue] = useState('0')
   const [currency, setCurrency] = useState('USD')
+  const [hasInteracted, setHasInteracted] = useState(false)
 
   const dailyLoss = missedCalls * avgClientValue
   const monthlyLoss = dailyLoss * 30
@@ -49,93 +50,109 @@ export default function AIVoiceReceptionist() {
 
   return (
     <motion.div
-      className="calculator-card"
+      className="calculator-card calculator-card-sideways"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      {/* Header */}
-      <div className="calculator-header">
-        <div className="header-icon">
-          <Phone size={24} />
+      {/* Left Side - Inputs */}
+      <div className="calculator-inputs">
+        {/* Header */}
+        <div className="calculator-header">
+          <div className="header-icon">
+            <Phone size={24} />
+          </div>
+          <h2 className="calculator-title">AI Voice Receptionist</h2>
         </div>
-        <h2 className="calculator-title">AI Voice Receptionist</h2>
-      </div>
 
-      {/* Missed Calls Slider */}
-      <div className="input-section">
-        <label className="input-label">
-          Missed calls per day: <span className="value-display">{missedCalls === 50 ? '50+' : missedCalls}</span>
-        </label>
-        <div className="slider-container">
-          <input
-            type="range"
-            min="1"
-            max="50"
-            value={missedCalls}
-            onChange={(e) => setMissedCalls(parseInt(e.target.value))}
-            className="slider"
-          />
-          <div className="slider-markers">
-            <span>1</span>
-            <span>25</span>
-            <span>50+</span>
+        {/* Missed Calls Slider */}
+        <div className="input-section">
+          <label className="input-label">
+            Missed calls per day: <span className="value-display">{missedCalls === 50 ? '50+' : missedCalls}</span>
+          </label>
+          <div className="slider-container">
+            <input
+              type="range"
+              min="0"
+              max="50"
+              value={missedCalls}
+              onChange={(e) => {
+                setMissedCalls(parseInt(e.target.value))
+                setHasInteracted(true)
+              }}
+              className="slider"
+            />
+            <div className="slider-markers">
+              <span>0</span>
+              <span>25</span>
+              <span>50+</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Currency Selector */}
+        <div className="input-section">
+          <label className="input-label">
+            Currency
+          </label>
+          <div className="currency-selector-wrapper">
+            <Globe className="input-icon" size={18} />
+            <select
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+              className="currency-select"
+              data-testid="currency-select"
+            >
+              {currencies.map((curr) => (
+                <option key={curr.code} value={curr.code}>
+                  {curr.code} - {curr.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Average Client Value Input */}
+        <div className="input-section">
+          <label className="input-label">
+            Average client value ({currencies.find(c => c.code === currency)?.symbol})
+          </label>
+          <div className="input-wrapper">
+            <span className="currency-symbol-icon">{currencies.find(c => c.code === currency)?.symbol}</span>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={inputValue}
+              onChange={(e) => {
+                handleInputChange(e)
+                setHasInteracted(true)
+              }}
+              onBlur={(e) => {
+                // Format the input on blur
+                if (e.target.value === '' || parseFloat(e.target.value) === 0) {
+                  setInputValue('0')
+                  setAvgClientValue(0)
+                } else {
+                  setInputValue(avgClientValue.toString())
+                }
+              }}
+              className="text-input"
+              placeholder="500"
+              data-testid="client-value-input"
+            />
           </div>
         </div>
       </div>
 
-      {/* Currency Selector */}
-      <div className="input-section">
-        <label className="input-label">
-          Currency
-        </label>
-        <div className="currency-selector-wrapper">
-          <Globe className="input-icon" size={18} />
-          <select
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-            className="currency-select"
-            data-testid="currency-select"
-          >
-            {currencies.map((curr) => (
-              <option key={curr.code} value={curr.code}>
-                {curr.code} - {curr.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* Average Client Value Input */}
-      <div className="input-section">
-        <label className="input-label">
-          Average client value ({currencies.find(c => c.code === currency)?.symbol})
-        </label>
-        <div className="input-wrapper">
-          <span className="currency-symbol-icon">{currencies.find(c => c.code === currency)?.symbol}</span>
-          <input
-            type="text"
-            inputMode="numeric"
-            value={inputValue}
-            onChange={handleInputChange}
-            onBlur={(e) => {
-              // Format the input on blur
-              if (e.target.value === '' || parseFloat(e.target.value) === 0) {
-                setInputValue('0')
-                setAvgClientValue(0)
-              } else {
-                setInputValue(avgClientValue.toString())
-              }
-            }}
-            className="text-input"
-            placeholder="500"
-            data-testid="client-value-input"
-          />
-        </div>
-      </div>
-
-      {/* Results */}
-      <div className="results-section">
+      {/* Right Side - Results */}
+      {hasInteracted && (
+        <motion.div
+          className="calculator-results"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="results-section">
         <div className="result-item">
           <Phone className="result-icon" size={16} />
           <div className="result-content">
@@ -200,6 +217,8 @@ export default function AIVoiceReceptionist() {
           Stop Losing Money - Book Demo
         </motion.a>
       </div>
+        </motion.div>
+      )}
     </motion.div>
   )
 }

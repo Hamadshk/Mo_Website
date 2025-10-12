@@ -57,7 +57,7 @@ export default function AgentCorti() {
             {/* Logo */}
             <div className="logo-section">
               <img
-                src="/images/Mo_Logo.jpeg"
+                src="/images/Mo_Logo_1.png"
                 alt="Mo Logo"
                 className="logo-image-corti"
               />

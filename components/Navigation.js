@@ -32,7 +32,7 @@ export default function Navigation() {
           style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
         >
           <img
-            src="/images/Mo_Logo.png"
+            src="/images/Mo_Logo_1.png"
             alt="Mo Logo"
             className="logo-image"
           />

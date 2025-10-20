@@ -3,6 +3,8 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { ArrowRight, Mail, Phone, MessageCircle, Calendar, Users, CheckCircle, Sparkles, Send, Globe, Clock, Shield } from 'lucide-react'
 import CalendlyEmbed from './CalendlyEmbed'
+import Link from 'next/link'
+
 
 export default function Contact() {
   const ref = useRef(null)
@@ -444,9 +446,9 @@ export default function Contact() {
               <p className="footer-tagline">Transforming Business with Intelligence</p>
             </div>
             <div className="footer-center">
-              <a href="/privacy-policy" className="footer-privacy-link">
+              <Link href="/privacy-policy" className="footer-privacy-link">
                 Privacy Policy
-              </a>
+              </Link>
             </div>
             <div className="footer-right">
               <p className="footer-copyright">© 2024 Agent Corti. All rights reserved.</p>

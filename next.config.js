@@ -1,13 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   compiler: {
     styledJsx: true,
   },
-  // Disable Fast Refresh to prevent continuous reloading
-  webpack: (config, { dev }) => {
-    if (dev) {
+  // Completely disable Fast Refresh
+  webpack: (config, { dev, isServer }) => {
+    if (dev && !isServer) {
       config.watchOptions = {
+        ignored: /node_modules/,
         poll: false,
         aggregateTimeout: 300,
       }

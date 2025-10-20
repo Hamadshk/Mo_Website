@@ -34,14 +34,14 @@ export default function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'agentcorti@gmail.com',
+      value: 'hello@aisolutions.com',
       description: 'Get a response within 2 hours',
       color: 'green'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+44 7356 292960',
+      value: '+1 (555) 123-4567',
       description: 'Available Mon-Fri, 9AM-6PM EST',
       color: 'blue'
     },
@@ -435,7 +435,7 @@ export default function Contact() {
             <div className="footer-left">
               <div className="footer-logo">
                 <img
-                  src="/images/Mo_Logo_1.png"
+                  src="/images/Mo_Logo.png"
                   alt="Mo Logo"
                   className="footer-logo-img"
                 />

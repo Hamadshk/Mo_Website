@@ -446,9 +446,9 @@ export default function Contact() {
               <p className="footer-tagline">Transforming Business with Intelligence</p>
             </div>
             <div className="footer-center">
-              <Link href="/privacy-policy" className="footer-privacy-link">
+              <a href="/privacy-policy" className="footer-privacy-link">
                 Privacy Policy
-              </Link>
+              </a>
             </div>
             <div className="footer-right">
               <p className="footer-copyright">© 2024 Agent Corti. All rights reserved.</p>
@@ -482,6 +482,8 @@ export default function Contact() {
         .footer-center {
           display: flex;
           align-items: center;
+          position: relative;
+          z-index: 10;
         }
 
         .footer-privacy-link {
@@ -495,6 +497,9 @@ export default function Contact() {
           transition: all 0.3s ease;
           cursor: pointer;
           display: inline-block;
+          position: relative;
+          z-index: 11;
+          pointer-events: auto;
         }
 
         .footer-privacy-link:hover {
